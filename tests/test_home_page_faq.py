@@ -48,6 +48,7 @@ class TestHomePageFAQ:
     def test_correct_answer_to_question(self, driver, faq_locator, answer_locator, answer_text):
         home_page_faq = HomePage(driver)
         home_page_faq.open_page(URL)
+        home_page_faq.click_cookies_button(HomePage.COOKIES_BUTTON)
         home_page_faq.click_faq_field(faq_locator)
         home_page_faq.get_text_answer_field(answer_locator)
         assert home_page_faq.get_text_answer_field(answer_locator) == answer_text
