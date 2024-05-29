@@ -18,7 +18,7 @@ class BasePage:
             print(f'Element with locator {locator} not found within {timeout} seconds.')
             return None
 
-    def click_element(self, locator: tuple, timeout: int = 10):
+    def click_element(self, locator, timeout: int = 10):
         element = self.find_element(locator, timeout)
         if element:
             element.click()
@@ -32,7 +32,7 @@ class BasePage:
             print(f'Element with locator {locator} not visible after {timeout} seconds.')
             return None
 
-    def scroll_to_element(self, locator: tuple, timeout: int = 10):
+    def scroll_to_element(self, locator, timeout: int = 10):
         element = self.find_element(locator, timeout)
         try:
             self.driver.execute_script("arguments[0].scrollIntoView();", element)
@@ -40,7 +40,7 @@ class BasePage:
         except TimeoutException:
             return None
 
-    def enter_text(self, locator: tuple, text: str, timeout: int = 10):
+    def enter_text(self, locator, text: str, timeout: int = 10):
         element = self.find_element(locator, timeout)
         if element:
             element.clear()
@@ -48,7 +48,7 @@ class BasePage:
         else:
             print(f'Failed to enter text in element with locator {locator}.')
 
-    def wait_url_after_redirect(self, url, timeout: int = 10):
+    def wait_changed_url_after_redirect(self, url, timeout: int = 10):
         try:
             WebDriverWait(self.driver, timeout).until(expected_conditions.url_changes(url))
             return True

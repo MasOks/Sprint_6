@@ -1,7 +1,6 @@
 from pages.home_page import HomePage
 from pages.order_form_page import OrderFormPage
 from pages.header_logo import HeaderLogo
-from config import URL
 import allure
 
 
@@ -9,24 +8,20 @@ class TestLogoHeader:
     @allure.title('Проверка перехода на главную страницу "Самоката" по клику на логотип "Самокат"')
     def test_go_to_home_page_scooter_by_click_logo_scooter(self, driver):
         home_page = HomePage(driver)
-        home_page.open_page(URL)
-        home_page.click_cookies_button(HomePage.COOKIES_BUTTON)
-        home_page.click_order_button_up(HomePage.ORDER_BUTTON_UP)
-
+        home_page.open_home_page()
+        home_page.click_cookies_button()
+        home_page.click_order_button_up()
         order_form_page = OrderFormPage(driver)
-        order_form_page.open_page(f'{URL}order')
-
+        order_form_page.open_order_page()
         header_logo = HeaderLogo(driver)
-        header_logo.click_logo_scooter(HeaderLogo.LOGO_SCOOTER)
-        assert home_page.get_text_subheader(HomePage.SUBHEADER) == home_page.SUBHEADER_TEXT
+        header_logo.click_logo_scooter()
+        assert home_page.get_text_subheader() == home_page.SUBHEADER_TEXT
 
     @allure.title('Проверка перехода через редирект на главную страницу Дзена по клику на логотип "Яндекс"')
-    def test_go_to_home_page_dzen_by_click_logo_yandex(self, driver):
+    def test_redirect_after_click_logo_yandex(self, driver):
         home_page = HomePage(driver)
-        home_page.open_page(URL)
-        home_page.click_cookies_button(HomePage.COOKIES_BUTTON)
-
+        home_page.open_home_page()
+        home_page.click_cookies_button()
         header_logo = HeaderLogo(driver)
-        header_logo.click_logo_yandex(HeaderLogo.LOGO_YANDEX)
-        header_logo.wait_redirect_dzen()
-        assert True
+        header_logo.click_logo_yandex()
+        assert header_logo.wait_redirect_dzen() is True

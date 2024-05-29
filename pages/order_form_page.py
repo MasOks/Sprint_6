@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 import allure
+from config import URL2
 
 
 class OrderFormPage(BasePage):
@@ -27,67 +28,79 @@ class OrderFormPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-    def open_page(self, url):
+    def open_order_page(self):
         with allure.step('Открытие формы заказа "Для кого самокат"'):
-            self.navigate(url)
+            self.navigate(URL2)
 
-    def enter_name(self, locator, text):
+    def enter_name(self, text):
         with allure.step('Заполнение поля "Имя"'):
-            self.enter_text(locator, text)
+            self.enter_text(self.FIELD_INPUT_NAME, text)
 
-    def enter_surname(self, locator, text):
+    def enter_surname(self, text):
         with allure.step('Заполнение поля "Фамилия"'):
-            self.enter_text(locator, text)
+            self.enter_text(self.FIELD_INPUT_SURNAME, text)
 
-    def enter_address(self, locator, text):
+    def enter_address(self, text):
         with allure.step('Заполнение поля "Адрес"'):
-            self.enter_text(locator, text)
+            self.enter_text(self.FIELD_INPUT_ADDRESS, text)
 
-    def click_metro_station(self, locator):
+    def click_metro_station(self):
         with allure.step('Заполнение поля "Станция метро"'):
-            self.click_element(locator)
+            self.click_element(self.FIELD_INPUT_STATION)
 
-    def enter_metro_station(self, locator):
-        self.scroll_to_element(locator)
-        return self.click_element(locator)
+    def enter_metro_station_6(self):
+        self.scroll_to_element(self.METRO_STATION_6)
+        return self.click_element(self.METRO_STATION_6)
 
-    def enter_telephone(self, locator, text):
+    def enter_metro_station_237(self):
+        self.scroll_to_element(self.METRO_STATION_237)
+        return self.click_element(self.METRO_STATION_237)
+
+    def enter_telephone(self, text):
         with allure.step('Заполнение поля "Телефон"'):
-            self.enter_text(locator, text)
+            self.enter_text(self.FIELD_INPUT_TELEPHONE, text)
 
-    def click_button_next(self, locator):
+    def click_button_next(self):
         with allure.step('Нажатие кнопки "Далее"'):
-            self.wait_for_element_visible(locator)
-            return self.click_element(locator)
+            self.wait_for_element_visible(self.BUTTON_NEXT)
+            return self.click_element(self.BUTTON_NEXT)
 
-    def second_form_is_visible(self, locator):
+    def second_form_is_visible(self):
         with allure.step('Ожидание отображения формы заказа "Про аренду"'):
-            return self.wait_for_element_visible(locator)
+            return self.wait_for_element_visible(self.HEADER_ABOUT_RENT)
 
-    def enter_data_delivery(self, locator, text):
+    def enter_data_delivery(self, text):
         with allure.step('Заполнение поля "Когда привезти самокат"'):
-            self.enter_text(locator, text)
+            self.enter_text(self.FIELD_DATA_DELIVERY, text)
 
-    def click_button_rental_period(self, locator):
+    def click_button_rental_period(self):
         with allure.step('Заполнение поля "Срок аренды"'):
-            self.click_element(locator)
+            self.click_element(self.BUTTON_RENTAL_PERIOD)
 
-    def menu_rental_period_is_visible(self, locator):
-        return self.wait_for_element_visible(locator)
+    def menu_rental_period_is_visible(self):
+        return self.wait_for_element_visible(self.MENU_RENTAL_PERIOD)
 
-    def enter_rental_period(self, locator):
-        self.scroll_to_element(locator)
-        return self.click_element(locator)
+    def enter_rental_period_2(self):
+        self.scroll_to_element(self.RENTAL_PERIOD_2)
+        return self.click_element(self.RENTAL_PERIOD_2)
 
-    def click_color_scooter(self, locator):
+    def enter_rental_period_5(self):
+        self.scroll_to_element(self.RENTAL_PERIOD_5)
+        return self.click_element(self.RENTAL_PERIOD_5)
+
+    def click_color_scooter_black(self):
         with allure.step('Заполнение поля "Цвет самоката"'):
-            self.click_element(locator)
+            self.click_element(self.FIELD_COLOR_BLACK)
 
-    def enter_comment(self, locator, text):
+    def click_color_scooter_grey(self):
+        with allure.step('Заполнение поля "Цвет самоката"'):
+            self.click_element(self.FIELD_COLOR_GREY)
+
+    def enter_comment(self, text):
         with allure.step('Заполнение поля "Комментарий для курьера"'):
-            self.enter_text(locator, text)
+            self.enter_text(self.FIELD_COMMENT, text)
 
-    def click_order_button(self, locator):
+    def click_order_button(self):
         with allure.step('Нажатие кнопки "Заказать" внизу формы заказа'):
-            self.scroll_to_element(locator)
-            return self.click_element(locator)
+            self.scroll_to_element(self.BUTTON_ORDER)
+            return self.click_element(self.BUTTON_ORDER)

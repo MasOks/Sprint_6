@@ -1,11 +1,11 @@
 import pytest
 from selenium import webdriver
-from config import URL
+from config import URL1
 
 
 @pytest.fixture
 def driver():
     firefox = webdriver.Firefox()
-    firefox.get(URL)
+    firefox.get(URL1)
     yield firefox
     firefox.quit()

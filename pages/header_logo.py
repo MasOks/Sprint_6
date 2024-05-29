@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
+from config import URL3
 import allure
 
 
@@ -10,14 +11,15 @@ class HeaderLogo(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-    def click_logo_scooter(self, locator):
+    def click_logo_scooter(self):
         with allure.step('Клик по логотипу "Самокат"'):
-            self.click_element(locator)
+            self.click_element(self.LOGO_SCOOTER)
 
-    def click_logo_yandex(self, locator):
+    def click_logo_yandex(self):
         with allure.step('Клик по логотипу "Яндекс"'):
-            self.click_element(locator)
+            self.click_element(self.LOGO_YANDEX)
 
     def wait_redirect_dzen(self):
         with allure.step('Осуществление редиректа'):
-            self.wait_url_after_redirect('https://dzen.ru/?yredirect=true')
+            self.wait_changed_url_after_redirect(URL3)
+            return True

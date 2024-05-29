@@ -11,6 +11,6 @@ class WantToPlaceOrderPopup(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-    def click_button_yes(self, locator):
+    def click_button_yes(self):
         with allure.step('Клик по кнопке "Да" всплывающего сообщения "Хотите оформить заказ?"'):
-            self.click_element(locator)
+            self.click_element(self.BUTTON_YES)
